@@ -14,7 +14,11 @@ const (
 	WIMIP_URL = "https://ipv4bot.whatismyipaddress.com"
 )
 
-var ip_services = []string{IPIFY_URL, IDENT_URL, WIMIP_URL}
+var ip_services = []string{
+	IPIFY_URL,
+	//IDENT_URL,
+	WIMIP_URL,
+}
 
 func ipNeedsUpdate(publicIp net.IP, host string) bool {
 	ips, err := net.LookupIP(host)

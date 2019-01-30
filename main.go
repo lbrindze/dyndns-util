@@ -27,6 +27,7 @@ func main() {
 
 	rand.Seed(time.Now().UTC().UnixNano())
 	ip, err := getMyIp()
+	fmt.Println(ip)
 	if err != nil {
 		fmt.Println("Failed to get current Public IP Address:", err)
 	}

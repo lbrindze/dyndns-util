@@ -34,15 +34,13 @@ func updateRecord(svc *route53.Route53, config *r53Config) {
 					Action: aws.String("UPSERT"), // Required
 					ResourceRecordSet: &route53.ResourceRecordSet{ // Required
 						Name: aws.String(config.Name), // Required
-						Type: aws.String("CNAME"),     // Required
+						Type: aws.String("A"),         // Required
 						ResourceRecords: []*route53.ResourceRecord{
 							{ // Required
 								Value: aws.String(config.Target.String()), // Required
 							},
 						},
-						TTL:           aws.Int64(config.TTL),
-						Weight:        aws.Int64(config.Weight),
-						SetIdentifier: aws.String("Arbitrary Id describing this change set"),
+						TTL: aws.Int64(config.TTL),
 					},
 				},
 			},
