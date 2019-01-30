@@ -7,9 +7,9 @@ RUN dep ensure
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=5 go build -a -ldflags '-w' -o ./bin/dyndns-util
 
-FROM scratch
+FROM aarch64/busybox 
 LABEL authors="Loren Brindze"
 
-COPY --from=builder /go/src/github.com/lbrindze/dyndns-util /bin/3p_parser
+COPY --from=builder /go/src/github.com/lbrindze/dyndns-util /bin/dyndns-util
 
-ENTRYPOINT ["/bin/3p_parser"]
+ENTRYPOINT ["/bin/dyndns-util"]

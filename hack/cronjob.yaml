@@ -1,0 +1,28 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: dyn-dns
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: dyn-dns
+            image: "lbrindze/arm64-dyndns-util:v0.0.6"
+            args: ["-d", "minik8-public.treestack.io", "-z", "Z2325P5EI7DHW9"]
+            env:
+            - name: AWS_DEFAULT_REGION
+              value: us-west-2
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: route53-access
+                  key: access_key
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: route53-access
+                  key: secret_key
+          restartPolicy: Never

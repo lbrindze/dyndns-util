@@ -9,9 +9,9 @@ import (
 )
 
 const (
-	IPIFY_URL = "https://api.ipify.org?format=text"
+	IPIFY_URL = "http://api.ipify.org?format=text"
 	IDENT_URL = "http://ident.me"
-	WIMIP_URL = "https://ipv4bot.whatismyipaddress.com"
+	WIMIP_URL = "http://ipv4bot.whatismyipaddress.com"
 )
 
 var ip_services = []string{
